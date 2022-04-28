@@ -1,0 +1,95 @@
+<div class="col">
+    <div class="row m-3">
+        <div class="col-md-8 p-0">
+            <h1>Mouvement des stocks</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <app-button-action></app-button-action>
+        </div>
+    </div>
+
+    <!-- mvtstk 1-->
+    <div class="col m-3">
+        <div class="accordion mb-2" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <app-detail-mvt-stk-article style="width: 95%;"></app-detail-mvt-stk-article>
+                </button>
+              </h2>
+              <div style="max-height:300px; overflow-y: scroll;" id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                </div>
+              </div>
+            </div>
+        </div>  
+            
+    <!-- mvtstk 1-->
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingtwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapsetwo" aria-expanded="true" aria-controls="collapsetwo">
+                    <app-detail-mvt-stk-article style="width: 95%;"></app-detail-mvt-stk-article>
+                </button>
+              </h2>
+              <div style="max-height:300px; overflow-y: scroll;" id="collapsetwo" class="accordion-collapse collapse" aria-labelledby="headingtwo" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                    <app-detail-mvt-stk></app-detail-mvt-stk>
+                </div>
+              </div>
+            </div>
+          </div> 
+
+    </div>
+
+
+
+    <div class="row">
+        <div class="col-md-12 text-center mb-3">
+            <app-pagination></app-pagination>
+        </div>
+    </div>
+
+</div>
+
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Correction de stock</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <div class="mb-3">
+            <input type="text" class="form-control" placeholder="Quantite">
+          </div>
+          <div class="mb-3">
+            <select class="form-select" aria-label="Default select example">
+              <option selected>Open this select menu</option>
+              <option>Corrctoin positive</option>
+              <option>Corrctoin negative</option>
+            </select>
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-danger" data-bs-dismiss="modal"><i class="bi bi-x-circle-fill"></i>&nbsp;Annuler</button>
+        <button type="button" class="btn btn-primary"><i class="bi bi-hdd-fill"></i>&nbsp;Enregistrer</button>
+      </div>
+    </div>
+  </div>
+</div>

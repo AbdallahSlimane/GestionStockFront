@@ -1,0 +1,53 @@
+<div class="col">
+    <div class="row m-3">
+        <div class="col-md-8 p-0">
+            <h1>Commande clients / fournissuers</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <app-button-action (clickEvent)="nouvelleCommande()"></app-button-action>
+        </div>
+    </div>
+
+       <!-- mvtstk 1-->
+    <div class="col m-3">
+        <div class="accordion" id="accordionExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                    <app-detail-cmd-clt-frs style="width: 95%;"></app-detail-cmd-clt-frs>
+                </button>
+              </h2>
+              <div style="max-height:300px; overflow-y: scroll;" id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                <div class="accordion-body">
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+                    <app-detail-cmd></app-detail-cmd>
+
+                </div>
+                
+              </div>
+              <div class="card-footer">
+                <div class="row">
+                    <div class="col-md-6"><h5>12 articles commandes</h5></div>
+                    <div class="col-md-6 text-end"><h5>Total commande : 123.63</h5></div>
+                </div>
+            </div>
+            </div>
+        </div>  
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12 text-center mb-3">
+            <app-pagination></app-pagination>
+        </div>
+    </div>
+
+</div>
+
