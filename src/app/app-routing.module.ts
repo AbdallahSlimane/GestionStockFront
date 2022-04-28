@@ -4,6 +4,8 @@ import { NouveauCltFrsComponent } from './composants/nouveau-clt-frs/nouveau-clt
 import { NouvelleCmdCltFrsComponent } from './composants/nouvelle-cmd-clt-frs/nouvelle-cmd-clt-frs.component';
 import { NouvelArticleComponent } from './pages/articles/nouvel-article/nouvel-article.component';
 import { PageArticleComponent } from './pages/articles/page-article/page-article.component';
+import { NouvelleCategoryComponent } from './pages/categories/nouvelle-category/nouvelle-category.component';
+import { PageCategorieComponent } from './pages/categories/page-categorie/page-categorie.component';
 import { PageClientComponent } from './pages/client/page-client/page-client.component';
 import { PageFournisseurComponent } from './pages/fournisseur/page-fournisseur/page-fournisseur.component';
 import { MvtstkComponent } from './pages/mvtstk/page-mvtstk/mvtstk.component';
@@ -12,6 +14,8 @@ import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.co
 import { PageInscriptionComponent } from './pages/page-inscription/page-inscription.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageStatistiquesComponent } from './pages/page-statistiques/page-statistiques.component';
+import { NouvelUtilisateurComponent } from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component';
+import { PageUtilisateurComponent } from './pages/utilisateur/page-utilisateur/page-utilisateur.component';
 
 const routes: Routes = [
   {path :'login',component: PageLoginComponent },
@@ -32,6 +36,12 @@ const routes: Routes = [
               {path:'nouveaufournisseur',component:NouveauCltFrsComponent},
               {path:'commandefournisseur',component:PageCmdCltFrsComponent},
               {path:'nouvellecommandefrs',component:NouvelleCmdCltFrsComponent},
+
+              {path:'categories',component:PageCategorieComponent},
+              {path:'nouvellecategorie',component:NouvelleCategoryComponent},
+
+              {path:'utilisateurs',component:PageUtilisateurComponent},
+              {path:'nouvelutilisateur',component:NouvelUtilisateurComponent},
 
             ]
   }

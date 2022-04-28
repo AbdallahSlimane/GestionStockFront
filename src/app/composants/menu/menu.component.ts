@@ -115,13 +115,13 @@ export class MenuComponent implements OnInit {
         id: "51",
         titre: 'Categories',
         icon: 'bi bi-gear',
-        url: ''
+        url: 'categories'
       },
       {
         id: "52",
         titre: 'utilisateurs',
         icon: 'bi bi-person-rolodex',
-        url: ''
+        url: 'utilisateurs'
       }
     ]
   }

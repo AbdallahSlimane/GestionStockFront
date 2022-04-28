@@ -1,0 +1,27 @@
+<div class="col">
+    <div class="row m-3">
+        <div class="col-md-8 p-0">
+            <h1>Liste des categories</h1>
+        </div>
+        <div class="col-md-4 text-end">
+            <app-button-action (clickEvent)="nouvelCategory()"></app-button-action>
+        </div>
+    </div>
+
+    <div class="col m-3">
+        <div class="row custon-border mb-3 p-3">
+            <div class="col-md-3 border-rigth">
+                Code categorie
+            </div>
+            <div class="col-md-3">
+                Description categorie
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 text-center mb-3">
+            <app-pagination></app-pagination>
+        </div>
+    </div>
+
+</div>
