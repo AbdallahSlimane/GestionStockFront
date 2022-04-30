@@ -14,6 +14,8 @@ import { PageDashboardComponent } from './pages/page-dashboard/page-dashboard.co
 import { PageInscriptionComponent } from './pages/page-inscription/page-inscription.component';
 import { PageLoginComponent } from './pages/page-login/page-login.component';
 import { PageStatistiquesComponent } from './pages/page-statistiques/page-statistiques.component';
+import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/changer-mot-de-passe.component';
+import { PageProfilComponent } from './pages/profil/page-profil/page-profil.component';
 import { NouvelUtilisateurComponent } from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component';
 import { PageUtilisateurComponent } from './pages/utilisateur/page-utilisateur/page-utilisateur.component';
 
@@ -42,6 +44,11 @@ const routes: Routes = [
 
               {path:'utilisateurs',component:PageUtilisateurComponent},
               {path:'nouvelutilisateur',component:NouvelUtilisateurComponent},
+
+              {path:'profil',component:PageProfilComponent},
+              {path:'changermotdepasse',component:ChangerMotDePasseComponent},
+
+
 
             ]
   }
