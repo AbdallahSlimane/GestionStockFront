@@ -30,14 +30,32 @@ const routes: Routes = [
               {path:'mvtstk',component:MvtstkComponent},
               /* Client */
               {path:'clients',component:PageClientComponent},
-              {path:'nouveauclient',component:NouveauCltFrsComponent},
-              {path:'commandeclient',component:PageCmdCltFrsComponent},
-              {path:'nouvellecommandeclt',component:NouvelleCmdCltFrsComponent},
+              {
+                path:'nouveauclient',component:NouveauCltFrsComponent,
+                data:{origin:'client'}
+              },
+              {
+                path:'commandeclient',component:PageCmdCltFrsComponent,
+                data:{origin:'client'}  
+              },
+              {
+                path:'nouvellecommandeclt',component:NouvelleCmdCltFrsComponent,
+                data:{origin:'client'}  
+              },
               /* fournisseur */
               {path:'fournisseurs',component:PageFournisseurComponent},
-              {path:'nouveaufournisseur',component:NouveauCltFrsComponent},
-              {path:'commandefournisseur',component:PageCmdCltFrsComponent},
-              {path:'nouvellecommandefrs',component:NouvelleCmdCltFrsComponent},
+              {
+                path:'nouveaufournisseur',component:NouveauCltFrsComponent,
+                data:{origin:'fournisseur'}               
+              },
+              {
+                path:'commandefournisseur',component:PageCmdCltFrsComponent,
+                data:{origin:'fournisseur'}  
+              },
+              {
+                path:'nouvellecommandefrs',component:NouvelleCmdCltFrsComponent,
+                data:{origin:'fournisseur'}  
+              },
 
               {path:'categories',component:PageCategorieComponent},
               {path:'nouvellecategorie',component:NouvelleCategoryComponent},

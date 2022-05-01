@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-page-client',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 })
 export class PageClientComponent implements OnInit {
 
-  constructor(private router : Router) { }
+  constructor(private activatedroute : ActivatedRoute , private router : Router) { }
 
   ngOnInit(): void {
   }

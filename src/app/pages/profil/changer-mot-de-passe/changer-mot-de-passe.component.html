@@ -21,8 +21,15 @@
             <div class="mb-3">
               <input type="password" class="form-control" placeholder="NConfiermer mot de passe">
             </div>
-            <button type="submit" class="btn btn-primary">Enregistrer</button>
           </form>
+          <div class="col-md-12 text-end">
+            <button class="btn btn-danger me-3" (click)="cancel()">
+                <i class="bi bi-x-circle-fill"></i>&nbsp;Annuler
+            </button>
+            <button class="btn btn-primary">
+                <i class="bi bi-hdd-fill"></i>&nbsp;Enregistrer
+            </button>
+        </div>
     </div>
 
 </div>

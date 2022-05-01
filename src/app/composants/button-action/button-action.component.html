@@ -1,21 +1,21 @@
 <div class="row d-flex">
 
    <div class="col-md-4 flex-fill">
-        <button type="button" class="btn btn-warning">
+        <button type="button" class="btn btn-warning" *ngIf="isImporterVisible">
            <i class="bi bi-cloud-upload-fill"></i>&nbsp;
             Importer
         </button>
     </div>
 
     <div class="col-md-4 flex-fill">
-        <button type="button" class="btn btn-primary">
+        <button type="button" class="btn btn-primary" *ngIf="isExporterVisible">
             <i class="bi bi-cloud-download-fill"></i> &nbsp;
             Exporter
         </button>
     </div>
 
      <div class="col-md-4 flex-fill">
-        <button type="button" class="btn btn-success" (click)="bouttonNouveauClick()">
+        <button type="button" class="btn btn-success" *ngIf="isNouveauVisible" (click)="bouttonNouveauClick()">
             <i class="bi bi-plus-circle-fill"></i>&nbsp;
             Nouveau
         </button>

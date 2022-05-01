@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-nouveau-clt-frs',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NouveauCltFrsComponent implements OnInit {
 
-  constructor() { }
+  origin = "";
+
+  constructor(private router:Router, private activatedroute : ActivatedRoute) { }
 
   ngOnInit(): void {
+    this.activatedroute.data.subscribe(data =>{
+      this.origin=data['origin'];
+    })
+  }
+
+  cancelClick(): void{
+    if(this.origin=="client"){
+      this.router.navigate(["clients"]);
+    }else if (this.origin=="fournisseur"){
+      this.router.navigate(["fournisseurs"]);
+    }
   }
 
 }
