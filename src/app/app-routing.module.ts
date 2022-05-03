@@ -18,53 +18,100 @@ import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/
 import { PageProfilComponent } from './pages/profil/page-profil/page-profil.component';
 import { NouvelUtilisateurComponent } from './pages/utilisateur/nouvel-utilisateur/nouvel-utilisateur.component';
 import { PageUtilisateurComponent } from './pages/utilisateur/page-utilisateur/page-utilisateur.component';
+import { ApplicationGuardService } from './services/guard/application-guard.service';
 
 const routes: Routes = [
   {path :'login',component: PageLoginComponent },
   {path :'inscrire',component: PageInscriptionComponent },
   {path :'',component: PageDashboardComponent,
     children:[
-              {path:'statistiques',component:PageStatistiquesComponent},
-              {path:'articles',component:PageArticleComponent},
-              {path:'nouvelarticle',component:NouvelArticleComponent},
-              {path:'mvtstk',component:MvtstkComponent},
+              {
+                path:'statistiques',component:PageStatistiquesComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'articles',component:PageArticleComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'nouvelarticle',component:NouvelArticleComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'mvtstk',component:MvtstkComponent,
+                canActivate:[ApplicationGuardService]
+              },
               /* Client */
-              {path:'clients',component:PageClientComponent},
+              {
+                path:'clients',component:PageClientComponent,
+                canActivate:[ApplicationGuardService]
+              },
               {
                 path:'nouveauclient',component:NouveauCltFrsComponent,
-                data:{origin:'client'}
+                data:{origin:'client'},
+                canActivate:[ApplicationGuardService]
               },
               {
                 path:'commandeclient',component:PageCmdCltFrsComponent,
-                data:{origin:'client'}  
+                data:{origin:'client'},
+                canActivate:[ApplicationGuardService]
+ 
               },
               {
                 path:'nouvellecommandeclt',component:NouvelleCmdCltFrsComponent,
-                data:{origin:'client'}  
+                data:{origin:'client'},
+                canActivate:[ApplicationGuardService]  
               },
               /* fournisseur */
-              {path:'fournisseurs',component:PageFournisseurComponent},
+              {
+                path:'fournisseurs',component:PageFournisseurComponent,
+                canActivate:[ApplicationGuardService]
+              },
               {
                 path:'nouveaufournisseur',component:NouveauCltFrsComponent,
-                data:{origin:'fournisseur'}               
+                data:{origin:'fournisseur'},
+                canActivate:[ApplicationGuardService]
+              
               },
               {
                 path:'commandefournisseur',component:PageCmdCltFrsComponent,
-                data:{origin:'fournisseur'}  
+                data:{origin:'fournisseur'},
+                canActivate:[ApplicationGuardService]
+  
               },
               {
                 path:'nouvellecommandefrs',component:NouvelleCmdCltFrsComponent,
-                data:{origin:'fournisseur'}  
+                data:{origin:'fournisseur'} ,
+                canActivate:[ApplicationGuardService]
+ 
               },
 
-              {path:'categories',component:PageCategorieComponent},
-              {path:'nouvellecategorie',component:NouvelleCategoryComponent},
+              {
+                path:'categories',component:PageCategorieComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'nouvellecategorie',component:NouvelleCategoryComponent,
+                canActivate:[ApplicationGuardService]
+              },
 
-              {path:'utilisateurs',component:PageUtilisateurComponent},
-              {path:'nouvelutilisateur',component:NouvelUtilisateurComponent},
+              {
+                path:'utilisateurs',component:PageUtilisateurComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'nouvelutilisateur',component:NouvelUtilisateurComponent,
+                canActivate:[ApplicationGuardService]
+              },
 
-              {path:'profil',component:PageProfilComponent},
-              {path:'changermotdepasse',component:ChangerMotDePasseComponent},
+              {
+                path:'profil',component:PageProfilComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'changermotdepasse',component:ChangerMotDePasseComponent,
+                canActivate:[ApplicationGuardService]
+              },
 
 
 
