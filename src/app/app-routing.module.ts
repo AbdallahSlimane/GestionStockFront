@@ -24,6 +24,7 @@ const routes: Routes = [
   {path :'login',component: PageLoginComponent },
   {path :'inscrire',component: PageInscriptionComponent },
   {path :'',component: PageDashboardComponent,
+  canActivate:[ApplicationGuardService],
     children:[
               {
                 path:'statistiques',component:PageStatistiquesComponent,

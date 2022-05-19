@@ -8,9 +8,12 @@ import { Router } from '@angular/router';
 })
 export class PageCategorieComponent implements OnInit {
 
+
   constructor(private router:Router) { }
 
-  ngOnInit(): void {
+  ngOnInit( ): void {
+
+
   }
   
   nouvelCategory(): void{
