@@ -1,3 +1,4 @@
+export { BasicErrorControllerService } from './services/basic-error-controller.service';
 export { ArticleControllerService } from './services/article-controller.service';
 export { AuthenticationControllerService } from './services/authentication-controller.service';
 export { CategoryControllerService } from './services/category-controller.service';

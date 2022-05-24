@@ -19,6 +19,7 @@ class UtilisateurControllerService extends __BaseService {
   static readonly findAllUsingGET7Path = '/gestiondesstock/v1/utilisateurs/all';
   static readonly saveUsingPOST7Path = '/gestiondesstock/v1/utilisateurs/create';
   static readonly deleteUsingDELETE7Path = '/gestiondesstock/v1/utilisateurs/delete/{idUtilisateur}';
+  static readonly findByEmailUsingGETPath = '/gestiondesstock/v1/utilisateurs/email/{emailUtilisateur}';
   static readonly findByIdUsingGET7Path = '/gestiondesstock/v1/utilisateurs/{idUtilisateur}';
 
   constructor(
@@ -133,6 +134,42 @@ class UtilisateurControllerService extends __BaseService {
    */
   deleteUsingDELETE7(idUtilisateur: number): __Observable<null> {
     return this.deleteUsingDELETE7Response(idUtilisateur).pipe(
+      __map(_r => _r.body as null)
+    );
+  }
+
+  /**
+   * findByEmail
+   * @param emailUtilisateur emailUtilisateur
+   */
+  findByEmailUsingGETResponse(emailUtilisateur: string): __Observable<__StrictHttpResponse<null>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/gestiondesstock/v1/utilisateurs/email/${encodeURIComponent(String(emailUtilisateur))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<null>;
+      })
+    );
+  }
+  /**
+   * findByEmail
+   * @param emailUtilisateur emailUtilisateur
+   */
+  findByEmailUsingGET(emailUtilisateur: string): __Observable<null> {
+    return this.findByEmailUsingGETResponse(emailUtilisateur).pipe(
       __map(_r => _r.body as null)
     );
   }

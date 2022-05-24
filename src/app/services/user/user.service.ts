@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { AuthenticationRequest, AuthenticationResponse } from 'src/gs-api/src/models';
-import { AuthenticationControllerService } from 'src/gs-api/src/services';
+import { AuthenticationControllerService, UtilisateurControllerService } from 'src/gs-api/src/services';
 import { StrictHttpResponse } from "src/gs-api/src/strict-http-response";
 
 
@@ -11,11 +11,18 @@ import { StrictHttpResponse } from "src/gs-api/src/strict-http-response";
 })
 export class UserService {
 
-  constructor( private authenticationService : AuthenticationControllerService ,private router:Router) { }
+  constructor( 
+      private authenticationService : AuthenticationControllerService ,
+      private router:Router,
+      private utilisateurService : UtilisateurControllerService
+      ) { }
 
 
   login(authenticationRequest:AuthenticationRequest):Observable<AuthenticationResponse> {
     return this.authenticationService.authenticateUsingPOST(authenticationRequest);   
+  }
+
+  getUserByEmail(email : string){
   }
 
   setConnecteduser(authenticatcationResponse:AuthenticationResponse):void{

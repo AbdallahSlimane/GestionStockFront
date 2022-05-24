@@ -30,10 +30,8 @@ export class PageInscriptionComponent implements OnInit {
     this.entrepriseService.sincrire(this.entrepriseDto)
     .subscribe(entrepriseDto=>{
       //TODO
-      this.connectEntreprise();
-     
+      this.connectEntreprise();   
     },error =>{
-      console.log("erreur " + JSON.stringify(error.error.errors))
       this.errorMsg = error.error.errors;
     });
   }
@@ -46,6 +44,7 @@ export class PageInscriptionComponent implements OnInit {
     this.userService.login(authenticationRequest)
     .subscribe(response =>{
       this.userService.setConnecteduser(response);
+      localStorage.setItem("origin","inscription");
       this.router.navigate(['changermotdepasse']);
     });
 
