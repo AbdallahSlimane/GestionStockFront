@@ -15,7 +15,9 @@ export { LigneCommandeClientDtoReq } from './models/ligne-commande-client-dto-re
 export { LigneCommandeClientDtoRes } from './models/ligne-commande-client-dto-res';
 export { LigneCommandeFournisseurDto } from './models/ligne-commande-fournisseur-dto';
 export { LigneVenteDto } from './models/ligne-vente-dto';
+export { ModelAndView } from './models/model-and-view';
 export { ResponseEntity } from './models/response-entity';
 export { RolesDto } from './models/roles-dto';
 export { UtilisateurDto } from './models/utilisateur-dto';
 export { VentesDto } from './models/ventes-dto';
+export { View } from './models/view';

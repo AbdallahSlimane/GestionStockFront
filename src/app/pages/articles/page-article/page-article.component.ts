@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ArticleControllerService } from 'src/gs-api/src/services';
 
 @Component({
   selector: 'app-page-article',
@@ -8,9 +9,11 @@ import { Router } from '@angular/router';
 })
 export class PageArticleComponent implements OnInit {
 
-  constructor(private router:Router) { }
+  constructor(private router:Router , private articleService : ArticleControllerService) { }
 
   ngOnInit(): void {
+    this.articleService.findAllUsingGET()
+    .subscribe(res=>{});
   }
 
   nouvelArticle(): void {

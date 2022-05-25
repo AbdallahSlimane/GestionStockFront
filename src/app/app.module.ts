@@ -76,7 +76,11 @@ import { HttpInterceptorService } from './services/interceptor/http-interceptor.
     FormsModule
     
   ],
-  providers: [],
+  providers: [{
+    provide : HTTP_INTERCEPTORS,
+    useClass : HttpInterceptorService,
+    multi : true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

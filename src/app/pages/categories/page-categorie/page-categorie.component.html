@@ -9,13 +9,13 @@
     </div>
 
     <div class="col m-3">
-        <div class="row custon-border mb-3 p-3">
+        <div class="row custon-border mb-3 p-3" *ngFor="let cat of listCategories">
             <div class="col-md-3 border-rigth">
-                aaaa            
+                {{cat.code}}            
             </div>
             <div class="col-md-3">
-                bbbb
-            </div>
+                {{cat.designation}}
+            </div> 
         </div>
     </div>
     <div class="row">

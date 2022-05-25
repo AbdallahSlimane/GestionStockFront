@@ -26,11 +26,18 @@ export class PageLoginComponent implements OnInit {
 
   login(){
     this.userService.login(this.authenticationRequest).subscribe((data)=>{
-      this.userService.setConnecteduser(data);
+      this.userService.setAccessToken(data);
+      this.getUserByEmail(); 
       this.router.navigate(['']);
     },  error =>{
-      console.log(this.authenticationRequest.login+ " et " +this.authenticationRequest.password);
       this.errorMessage=error.error.message;
     });;
+  }
+
+  getUserByEmail():void{
+   this.userService.getUserByEmail(this.authenticationRequest.login)
+      .subscribe(user =>{
+       this.userService.setConnectedUser(user)
+      });
   }
 }

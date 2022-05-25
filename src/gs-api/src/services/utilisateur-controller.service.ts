@@ -141,8 +141,9 @@ class UtilisateurControllerService extends __BaseService {
   /**
    * findByEmail
    * @param emailUtilisateur emailUtilisateur
+   * @return OK
    */
-  findByEmailUsingGETResponse(emailUtilisateur: string): __Observable<__StrictHttpResponse<null>> {
+  findByEmailUsingGETResponse(emailUtilisateur: string): __Observable<__StrictHttpResponse<UtilisateurDto>> {
     let __params = this.newParams();
     let __headers = new HttpHeaders();
     let __body: any = null;
@@ -160,17 +161,18 @@ class UtilisateurControllerService extends __BaseService {
     return this.http.request<any>(req).pipe(
       __filter(_r => _r instanceof HttpResponse),
       __map((_r) => {
-        return _r as __StrictHttpResponse<null>;
+        return _r as __StrictHttpResponse<UtilisateurDto>;
       })
     );
   }
   /**
    * findByEmail
    * @param emailUtilisateur emailUtilisateur
+   * @return OK
    */
-  findByEmailUsingGET(emailUtilisateur: string): __Observable<null> {
+  findByEmailUsingGET(emailUtilisateur: string): __Observable<UtilisateurDto> {
     return this.findByEmailUsingGETResponse(emailUtilisateur).pipe(
-      __map(_r => _r.body as null)
+      __map(_r => _r.body as UtilisateurDto)
     );
   }
 

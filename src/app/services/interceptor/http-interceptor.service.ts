@@ -14,21 +14,21 @@ export class HttpInterceptorService implements HttpInterceptor{
 
     let authenticationResponse : AuthenticationResponse={};
 
-    if(localStorage.getItem('connectedUser')){
+    if(localStorage.getItem('accessToken')){
       authenticationResponse = JSON.parse(
-        localStorage.getItem("connectedUser") as string
+        localStorage.getItem("accessToken") as string
       );
-    }
+   
 
     const authRep = req.clone({
       headers: new HttpHeaders({
         'Access-Control-Allow-Origin':'*',
         Authorization : 'Bearer '+authenticationResponse.accessToken
       })
-    })
-
-    
+    });
     return next.handle(authRep);
+  }
+    return next.handle(req);
   }
 
   
