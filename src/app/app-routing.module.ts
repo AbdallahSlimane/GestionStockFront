@@ -87,12 +87,17 @@ const routes: Routes = [
  
               },
 
+              /** Categories */
               {
                 path:'categories',component:PageCategorieComponent,
                 canActivate:[ApplicationGuardService]
               },
               {
                 path:'nouvellecategorie',component:NouvelleCategoryComponent,
+                canActivate:[ApplicationGuardService]
+              },
+              {
+                path:'nouvellecategorie/:idCategory',component:NouvelleCategoryComponent,
                 canActivate:[ApplicationGuardService]
               },
 

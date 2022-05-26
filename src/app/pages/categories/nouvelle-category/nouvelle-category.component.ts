@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CategoryService } from 'src/app/services/category/category.service';
 import { CategoryDto } from 'src/gs-api/src/models/category-dto';
 
@@ -15,10 +15,18 @@ export class NouvelleCategoryComponent implements OnInit {
 
   constructor(
     private router:Router,
-    private categoryService : CategoryService
+    private categoryService : CategoryService,
+    private activatedRoute : ActivatedRoute
     ) { } 
 
   ngOnInit(): void {
+    const idCategory = this.activatedRoute.snapshot.params['idCategory'];
+    if(idCategory){
+      this.categoryService.findById(idCategory)
+      .subscribe(cat => {
+        this.categoryDto = cat;
+      })
+    }
   }
 
   cancel():void{

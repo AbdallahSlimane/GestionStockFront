@@ -22,4 +22,8 @@ export class CategoryService {
   findAll(): Observable<CategoryDto[]> {
     return this.categoryService.findAllUsingGET1();
   }
+
+  findById(id : number) : Observable<CategoryDto>{
+    return this.categoryService.findByIdUsingGET1(id);
+  }
 }
