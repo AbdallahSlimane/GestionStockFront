@@ -30,6 +30,8 @@ const routes: Routes = [
                 path:'statistiques',component:PageStatistiquesComponent,
                 canActivate:[ApplicationGuardService]
               },
+
+              /**Article */
               {
                 path:'articles',component:PageArticleComponent,
                 canActivate:[ApplicationGuardService]
@@ -38,6 +40,12 @@ const routes: Routes = [
                 path:'nouvelarticle',component:NouvelArticleComponent,
                 canActivate:[ApplicationGuardService]
               },
+              {
+                path:'nouvelarticle/:idArticle',component:NouvelArticleComponent,
+                canActivate:[ApplicationGuardService]
+              },
+
+              /** mouvement de stock */
               {
                 path:'mvtstk',component:MvtstkComponent,
                 canActivate:[ApplicationGuardService]

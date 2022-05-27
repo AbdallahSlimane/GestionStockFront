@@ -28,6 +28,15 @@ export class NouvelArticleComponent implements OnInit {
     .subscribe(categories =>{
       this.listCategorie = categories;
     });
+
+    const idArticle = this.activatedRoute.snapshot.params['idArticle'];
+    if(idArticle){
+      this.articlesService.findArticleById(idArticle)
+      .subscribe(article => {
+        this.articleDto = article;
+        this.categorieDto = this.articleDto.category ? this.articleDto.category : {};
+      })
+    }
   }
 
   cancel():void{
@@ -35,7 +44,7 @@ export class NouvelArticleComponent implements OnInit {
   }
 
   enregistrerArticle() : void{
-    if(this.categorieDto.id){
+    if(this.categorieDto?.id){
       this.articleDto.category = this.categorieDto;
     }
     this.articlesService.enregistrerArticle(this.articleDto)

@@ -365,7 +365,7 @@ class ArticleControllerService extends __BaseService {
 
     let req = new HttpRequest<any>(
       'GET',
-      this.rootUrl + `/gestiondesstock/v1articles/${encodeURIComponent(String(idArticle))}`,
+      this.rootUrl + `/gestiondesstock/v1/articles/id/${encodeURIComponent(String(idArticle))}`,
       __body,
       {
         headers: __headers,

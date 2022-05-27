@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { ArticleDto } from 'src/gs-api/src/models';
 
 @Component({
@@ -11,9 +12,14 @@ export class DetailArticleComponent implements OnInit {
   @Input()
   articleDto : ArticleDto = {};
 
-  constructor() { }
+  constructor(
+    private router : Router
+  ) { }
 
   ngOnInit(): void {
   }
 
+  modifierArticle(){
+    this.router.navigate(['nouvelarticle',this.articleDto.id])
+  }
 }
