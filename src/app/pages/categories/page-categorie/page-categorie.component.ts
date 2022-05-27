@@ -11,6 +11,8 @@ import { CategoryDto } from 'src/gs-api/src/models';
 export class PageCategorieComponent implements OnInit {
 
   listCategories : Array<CategoryDto> = [];
+  selectedCatIdDelete = -1;
+  errorMsg = '';
   
   constructor(
     private router:Router,
@@ -18,18 +20,40 @@ export class PageCategorieComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-
+    this.findAllCategories();
+  }
+  
+  findAllCategories(){
     this.categoryService.findAll()
     .subscribe(res=>{
       this.listCategories = res;
     })
   }
-  
+
   nouvelCategory(): void{
     this.router.navigate(['nouvellecategorie']);
   }
 
   modifierCat(id? : number) : void{
     this.router.navigate(['nouvellecategorie' , id]);
+  }
+
+  confirmerEtSupprimerCat() : void{
+    if (this.selectedCatIdDelete !== -1){
+      this.categoryService.delete(this.selectedCatIdDelete)
+      .subscribe(res =>{
+        this.findAllCategories();
+      }, error =>{
+        this.errorMsg = error.error.message;
+      })
+    }
+  }
+
+  annulerSuppressionCat() : void{
+    this.selectedCatIdDelete = -1;
+  }
+
+  selectCatPourSupprimer(id : any) : void{
+    this.selectedCatIdDelete = id;
   }
 }

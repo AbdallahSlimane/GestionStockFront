@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 import { CategoryDto } from 'src/gs-api/src/models';
 import { CategoryControllerService } from 'src/gs-api/src/services';
 import { UserService } from '../user/user.service';
@@ -26,4 +26,11 @@ export class CategoryService {
   findById(id : number) : Observable<CategoryDto>{
     return this.categoryService.findByIdUsingGET1(id);
   }
+
+  delete(idCategory : number): Observable<any>{
+    
+      return this.categoryService.deleteUsingDELETE1Response(idCategory);
+    }
+
+  
 }
