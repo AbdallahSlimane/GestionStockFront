@@ -54,4 +54,12 @@ export class NouvelArticleComponent implements OnInit {
       this.errorMsg = error.error.errors;
     })
   }
+
+  calculerTTC(){
+    if(this.articleDto.prixUnitaireHt && this.articleDto.tauxTva){
+      // prixHT + (prixHT * (TauxTVA / 100))
+      this.articleDto.prixUnitaireTtc =
+         +this.articleDto.prixUnitaireHt + (+( this.articleDto.prixUnitaireHt * ( this.articleDto.tauxTva / 100)))
+    }
+  }
 }
