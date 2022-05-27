@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ArticleDto } from 'src/gs-api/src/models';
 
 @Component({
   selector: 'app-detail-article',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-article.component.scss']
 })
 export class DetailArticleComponent implements OnInit {
+
+  @Input()
+  articleDto : ArticleDto = {};
 
   constructor() { }
 

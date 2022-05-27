@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ArticleDto } from 'src/gs-api/src/models';
 import { ArticleControllerService } from 'src/gs-api/src/services';
 
 @Component({
@@ -9,11 +10,15 @@ import { ArticleControllerService } from 'src/gs-api/src/services';
 })
 export class PageArticleComponent implements OnInit {
 
+  listArticle : Array<ArticleDto> = [];
+
   constructor(private router:Router , private articleService : ArticleControllerService) { }
 
   ngOnInit(): void {
     this.articleService.findAllUsingGET()
-    .subscribe(res=>{});
+    .subscribe(article=>{
+      this.listArticle = article ;
+    });
   }
 
   nouvelArticle(): void {
