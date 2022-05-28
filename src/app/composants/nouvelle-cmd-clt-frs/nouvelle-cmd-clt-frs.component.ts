@@ -9,6 +9,7 @@ import { ActivatedRoute } from '@angular/router';
 export class NouvelleCmdCltFrsComponent implements OnInit {
 
   origin="";
+
   constructor(private activatedRoute:ActivatedRoute) { }
 
   ngOnInit(): void {
@@ -16,5 +17,6 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       this.origin=data['origin'];
     })
   }
+
 
 }
