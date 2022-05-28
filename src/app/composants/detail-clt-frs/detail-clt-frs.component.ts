@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ClientDto } from 'src/gs-api/src/models';
 
 @Component({
   selector: 'app-detail-clt-frs',
@@ -6,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-clt-frs.component.scss']
 })
 export class DetailCltFrsComponent implements OnInit {
+
+  @Input()
+  clientFournisseur : ClientDto = {}
 
   constructor() { }
 

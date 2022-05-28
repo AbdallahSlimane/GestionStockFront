@@ -8,15 +8,15 @@
         <div class="col">
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-info-circle-fill blue-color"></i></div>
-                <div class="col-md-11">Nom</div>
+                <div class="col-md-11">{{clientFournisseur.nom}}</div>
             </div>
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-info-square-fill blue-color"></i></div>
-                <div class="col-md-11">Prenom</div>
+                <div class="col-md-11">{{clientFournisseur.prenom}}</div>
             </div>
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-telephone-fill blue-color"></i></div>
-                <div class="col-md-11">0011 22 33 44 55 66</div>
+                <div class="col-md-11">{{clientFournisseur.numTel}}</div>
             </div>
         </div>
     </div>
@@ -26,15 +26,19 @@
         <div class="col">
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-house-door-fill blue-color"></i></div>
-                <div class="col-md-11">Adresse 1 adresse 2</div>
+                <div class="col-md-11">{{clientFournisseur.adresse?.adresse1}} {{clientFournisseur.adresse?.adresse2}}</div>
             </div>
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-geo-alt-fill blue-color"></i></div>
-                <div class="col-md-11">5012</div>
+                <div class="col-md-11">{{clientFournisseur.adresse?.codePostale}}</div>
             </div>
             <div class="row">
                 <div class="col-md-1"><i class="bi bi-globe blue-color"></i></div>
-                <div class="col-md-11">pays  </div>
+                <div class="col-md-11">{{clientFournisseur.adresse?.ville}} </div>
+            </div>
+            <div class="row">
+                <div class="col-md-1"><i class="bi bi-globe blue-color"></i></div>
+                <div class="col-md-11">{{clientFournisseur.adresse?.pays}} </div>
             </div>
         </div>
     </div>

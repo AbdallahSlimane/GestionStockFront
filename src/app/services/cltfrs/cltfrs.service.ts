@@ -20,7 +20,7 @@ export class CltfrsService {
     return this.clientService.saveUsingPOST2(clientDto);
   }
 
-  findAllClient() : Observable<ClientDto[]>{
+  findAllClients() : Observable<ClientDto[]>{
     return this.clientService.findAllUsingGET2();
   }
 
