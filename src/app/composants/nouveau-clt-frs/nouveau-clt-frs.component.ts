@@ -13,7 +13,7 @@ export class NouveauCltFrsComponent implements OnInit {
   origin = "";
   clientFournisseur : ClientDto ={}
   adresseDto : AdresseDto ={}
-  errorMsg : Array<string> = []
+  errorMsg: Array<string> = [];
 
   constructor(
     private router:Router,
@@ -25,6 +25,25 @@ export class NouveauCltFrsComponent implements OnInit {
     this.activatedroute.data.subscribe(data =>{
       this.origin=data['origin'];
     })
+
+    this.findObject();
+  }
+
+  findObject(){
+    const id = this.activatedroute.snapshot.params['id']
+    if(id){
+      
+      if(this.origin == "client"){
+        this.cltFrsService.findClientById(id)
+        .subscribe(client =>{
+          this.clientFournisseur = client;
+          this.adresseDto = this.clientFournisseur.adresse!
+        });
+
+      }else if(this.origin == "fournisseur"){
+
+      }
+    }
   }
 
   cancelClick(): void{

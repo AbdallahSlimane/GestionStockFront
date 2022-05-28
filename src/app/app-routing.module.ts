@@ -61,6 +61,11 @@ const routes: Routes = [
                 canActivate:[ApplicationGuardService]
               },
               {
+                path:'nouveauclient/:id',component:NouveauCltFrsComponent,
+                data:{origin:'client'},
+                canActivate:[ApplicationGuardService]
+              },
+              {
                 path:'commandeclient',component:PageCmdCltFrsComponent,
                 data:{origin:'client'},
                 canActivate:[ApplicationGuardService]
