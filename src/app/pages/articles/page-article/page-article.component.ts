@@ -11,10 +11,15 @@ import { ArticleControllerService } from 'src/gs-api/src/services';
 export class PageArticleComponent implements OnInit {
 
   listArticle : Array<ArticleDto> = [];
+  errorMsg = ''
 
   constructor(private router:Router , private articleService : ArticleControllerService) { }
 
   ngOnInit(): void {
+    this.findListArticle()
+  }
+
+  findListArticle(){
     this.articleService.findAllUsingGET()
     .subscribe(article=>{
       this.listArticle = article ;
@@ -23,5 +28,13 @@ export class PageArticleComponent implements OnInit {
 
   nouvelArticle(): void {
     this.router.navigate(['nouvelarticle']);
+  }
+
+  handleSuppression( event : any){
+    if(event == 'success'){
+      this.findListArticle();
+    }else {
+      this.errorMsg = event;
+    }
   }
 }
