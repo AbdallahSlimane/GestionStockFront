@@ -1,5 +1,6 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
+import { CltfrsService } from 'src/app/services/cltfrs/cltfrs.service';
 import { ClientDto } from 'src/gs-api/src/models';
 
 @Component({
@@ -15,7 +16,13 @@ export class DetailCltFrsComponent implements OnInit {
   @Input()
   clientFournisseur : ClientDto = {}
 
-  constructor(private router : Router) { }
+  @Output()
+  suppressionResult = new EventEmitter
+
+  constructor(
+    private router : Router,
+    private cltFrsService : CltfrsService
+    ) { }
 
   ngOnInit(): void {
   }
@@ -28,4 +35,16 @@ export class DetailCltFrsComponent implements OnInit {
     }
   }
 
+  confirmerEtSupprimer(){
+    if(this.origin == 'client'){
+      this.cltFrsService.deleteClient(this.clientFournisseur.id!)
+      .subscribe(res=>{
+        this.suppressionResult.emit('success')
+      }, error =>{
+        this.suppressionResult.emit(error.error.message)
+      })
+    }else if (this.origin =='fournisseur'){
+
+    }
+  }
 }

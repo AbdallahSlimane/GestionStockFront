@@ -11,6 +11,7 @@ import { ClientDto } from 'src/gs-api/src/models';
 export class PageClientComponent implements OnInit {
 
   listClient : Array<ClientDto> = []
+  errorMsg = ''
 
   constructor(
     private cltFrsService : CltfrsService ,
@@ -31,4 +32,13 @@ export class PageClientComponent implements OnInit {
   nouveauClient(): void{
     this.router.navigate(['nouveauclient']);
   }
+
+  handleSuppression(event : any){
+    if(event == "success"){
+      this.findAllClient()
+    }else{
+      this.errorMsg = event;
+    }
+  }
+
 }

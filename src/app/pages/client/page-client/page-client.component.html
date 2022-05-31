@@ -8,12 +8,17 @@
         </div>
     </div>
 
+    <div class="alert alert-danger" *ngIf="errorMsg">
+        {{errorMsg}}
+    </div>
+    
     <div class="col m-3">
 
         <app-detail-clt-frs 
             *ngFor="let client of listClient" 
             [clientFournisseur]="client"
             [origin]="'client'"
+            (suppressionResult)="handleSuppression($event)"
         >
         </app-detail-clt-frs>
 

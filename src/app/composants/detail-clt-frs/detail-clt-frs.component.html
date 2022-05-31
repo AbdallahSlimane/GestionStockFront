@@ -52,7 +52,7 @@
                 </button>
             </div>
             <div class="col-md-4">
-                <button type="button" class="btn btn-link text-danger">
+                <button type="button" class="btn btn-link text-danger" data-bs-toggle="modal" [attr.data-bs-target]="'#modalDeleteArt'+clientFournisseur.id">
                     <i class="bi bi-trash-fill"></i>Supprimer
                 </button>
             </div>
@@ -61,6 +61,25 @@
                     <i class="bi bi-card-checklist"></i>Details
                 </button>
             </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="modalDeleteArt{{clientFournisseur.id}}" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="staticBackdropLabel">Confirmation de la suppression</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                Etes-vous sur de vouloir supprimer cette {{origin}} ?
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"><i class="bi bi-slash-circle"></i> Annuler</button>
+            <button type="button" class="btn btn-danger" data-bs-dismiss="modal" (click)="confirmerEtSupprimer()"><i class="bi bi-trash-fill"></i> Supprimer</button>
+            </div>
+        </div>
         </div>
     </div>
 

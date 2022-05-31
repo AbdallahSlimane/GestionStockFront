@@ -26,8 +26,8 @@ class ArticleControllerService extends __BaseService {
   static readonly findHistoriqueCommandeFournisseurUsingGETPath = '/gestiondesstock/v1/articles/hisqtorique/commandefournisseur/{idArticle}';
   static readonly findHistoriqueCommandeClientUsingGETPath = '/gestiondesstock/v1/articles/hisqtorique/commmandeclient/{idArticle}';
   static readonly findHistpriqueVenteUsingGETPath = '/gestiondesstock/v1/articles/hisqtorique/vente/{idArticle}';
+  static readonly findByIdUsingGETPath = '/gestiondesstock/v1/articles/id/{idArticle}';
   static readonly findByCodeArticleUsingGETPath = '/gestiondesstock/v1/articles/{codeArticle}';
-  static readonly findByIdUsingGETPath = '/gestiondesstock/v1articles/{idArticle}';
 
   constructor(
     config: __Configuration,
@@ -310,48 +310,6 @@ class ArticleControllerService extends __BaseService {
   }
 
   /**
-   * Rechercher un article par Code
-   *
-   * Cette methode permet de recherhcer un article par son Code
-   * @param codeArticle codeArticle
-   * @return l'article a ete trouve dans la BDD
-   */
-  findByCodeArticleUsingGETResponse(codeArticle: string): __Observable<__StrictHttpResponse<ArticleDto>> {
-    let __params = this.newParams();
-    let __headers = new HttpHeaders();
-    let __body: any = null;
-
-    let req = new HttpRequest<any>(
-      'GET',
-      this.rootUrl + `/gestiondesstock/v1/articles/${encodeURIComponent(String(codeArticle))}`,
-      __body,
-      {
-        headers: __headers,
-        params: __params,
-        responseType: 'json'
-      });
-
-    return this.http.request<any>(req).pipe(
-      __filter(_r => _r instanceof HttpResponse),
-      __map((_r) => {
-        return _r as __StrictHttpResponse<ArticleDto>;
-      })
-    );
-  }
-  /**
-   * Rechercher un article par Code
-   *
-   * Cette methode permet de recherhcer un article par son Code
-   * @param codeArticle codeArticle
-   * @return l'article a ete trouve dans la BDD
-   */
-  findByCodeArticleUsingGET(codeArticle: string): __Observable<ArticleDto> {
-    return this.findByCodeArticleUsingGETResponse(codeArticle).pipe(
-      __map(_r => _r.body as ArticleDto)
-    );
-  }
-
-  /**
    * Rechercher un article par Id
    *
    * Cette methode permet de recherhcer un article par son Id
@@ -389,6 +347,48 @@ class ArticleControllerService extends __BaseService {
    */
   findByIdUsingGET(idArticle: number): __Observable<ArticleDto> {
     return this.findByIdUsingGETResponse(idArticle).pipe(
+      __map(_r => _r.body as ArticleDto)
+    );
+  }
+
+  /**
+   * Rechercher un article par Code
+   *
+   * Cette methode permet de recherhcer un article par son Code
+   * @param codeArticle codeArticle
+   * @return l'article a ete trouve dans la BDD
+   */
+  findByCodeArticleUsingGETResponse(codeArticle: string): __Observable<__StrictHttpResponse<ArticleDto>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/gestiondesstock/v1/articles/${encodeURIComponent(String(codeArticle))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<ArticleDto>;
+      })
+    );
+  }
+  /**
+   * Rechercher un article par Code
+   *
+   * Cette methode permet de recherhcer un article par son Code
+   * @param codeArticle codeArticle
+   * @return l'article a ete trouve dans la BDD
+   */
+  findByCodeArticleUsingGET(codeArticle: string): __Observable<ArticleDto> {
+    return this.findByCodeArticleUsingGETResponse(codeArticle).pipe(
       __map(_r => _r.body as ArticleDto)
     );
   }
