@@ -34,6 +34,7 @@ import { PageProfilComponent } from './pages/profil/page-profil/page-profil.comp
 import { ChangerMotDePasseComponent } from './pages/profil/changer-mot-de-passe/changer-mot-de-passe.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpInterceptorService } from './services/interceptor/http-interceptor.service';
+import { LoaderComponent } from './composants/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -66,7 +67,8 @@ import { HttpInterceptorService } from './services/interceptor/http-interceptor.
     DetailUtilisateurComponent,
     NouvelUtilisateurComponent,
     PageProfilComponent,
-    ChangerMotDePasseComponent
+    ChangerMotDePasseComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,
