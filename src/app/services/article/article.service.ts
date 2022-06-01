@@ -31,6 +31,10 @@ export class ArticleService {
     return of();
   }
 
+  findArticleByCode(codeArticle : string): Observable<ArticleDto>{
+      return this.articleService.findByCodeArticleUsingGET(codeArticle);
+  }
+
   deleteArticle(idArticle : number) : Observable<any>{
     if(idArticle){
       return this.articleService.deleteUsingDELETE(idArticle)

@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { LigneCommandeClientDto } from 'src/gs-api/src/models';
 
 @Component({
   selector: 'app-detail-cmd-clt-frs',
@@ -6,6 +7,8 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./detail-cmd-clt-frs.component.scss']
 })
 export class DetailCmdCltFrsComponent implements OnInit {
+
+ 
 
   constructor() { }
 
