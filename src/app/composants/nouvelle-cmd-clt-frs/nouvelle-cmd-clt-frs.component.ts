@@ -19,6 +19,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   codeArticle=""
   quantite=""
   totalCommande=0
+  listArticle: Array<ArticleDto> = []
+  articleNotYetSelected = false
 
   lignesCommande : Array<LigneCommandeClientDto> = []
   
@@ -33,6 +35,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       this.origin=data['origin'];
     })
     this.findAll()
+    this.findAllArticle()
   }
 
   findAll(){
@@ -42,6 +45,13 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
         this.ListClientFournisseurs=client
       })
     }
+  }
+
+  findAllArticle(){
+    this.articleService.findAllArticle()
+    .subscribe(articles =>{
+      this.listArticle = articles
+    })
   }
 
   findArticleByCode(codeArticle : string){
@@ -58,8 +68,13 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
   searchArticle(){
-   
-    this.findArticleByCode(this.codeArticle)
+    if(this.codeArticle.length == 0)
+    {
+      this.findAllArticle()
+    }
+
+    this.listArticle = this.listArticle
+      .filter(art => art.codeArticle?.startsWith(this.codeArticle) ||art.designation?.startsWith(this.codeArticle) )
 
   }
   
@@ -75,6 +90,16 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.searchedArticle = {}
     this.quantite = ''
     this.codeArticle = ''
+    this.articleNotYetSelected=false;
+
   }
+
+  selectArticle(article : ArticleDto){
+    this.searchedArticle = article;
+    this.codeArticle = article.codeArticle!;
+    this.articleNotYetSelected=true;
+  }
+
+
 
 }

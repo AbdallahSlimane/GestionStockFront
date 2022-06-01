@@ -46,14 +46,17 @@
                 <img src="assets/product.png" class="rounded-article" width="100px" height="100px">
             </div>
         </div>
-        <div class="alert alert-danger" *ngIf="articleErrorMsg">
-            {{articleErrorMsg}}
-        </div>
-
         <div class="row mt-2 p-2 custon-border">
             <div class="row">
                 <div class="col">
                   <input type="text" class="form-control" placeholder="Code article" [(ngModel)]="codeArticle" (input)="searchArticle()">
+                    <div *ngIf="codeArticle.length && !articleNotYetSelected" class="autocomplete shadow p-3 mb-5 bg-white rounded">
+                        <p *ngFor="let article of listArticle" class="p-1"
+                            (click)="selectArticle(article)"
+                        > 
+                            {{article.codeArticle}} {{article.designation}}
+                        </p>
+                    </div>
                 </div>
                 <div class="col">
                   <input type="text" class="form-control" placeholder="Quantite" [(ngModel)]="quantite">
