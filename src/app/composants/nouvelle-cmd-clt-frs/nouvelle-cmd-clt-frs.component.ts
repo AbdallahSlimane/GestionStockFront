@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { CltfrsService } from 'src/app/services/cltfrs/cltfrs.service';
-import { ArticleDto, ClientDto, LigneCommandeClientDto } from 'src/gs-api/src/models';
+import { ArticleDto, ClientDto, CommandeClientDto, LigneCommandeClientDto } from 'src/gs-api/src/models';
+import { CommandeClientControllerService } from 'src/gs-api/src/services';
 
 @Component({
   selector: 'app-nouvelle-cmd-clt-frs',
@@ -23,11 +24,14 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   articleNotYetSelected = false
 
   lignesCommande : Array<LigneCommandeClientDto> = []
+  errorMsg: Array<string> = [];
   
   constructor(
     private activatedRoute:ActivatedRoute,
+    private router: Router,
     private cltFrsService : CltfrsService,
-    private articleService : ArticleService
+    private articleService : ArticleService,
+    private commandeClientService : CommandeClientControllerService
     ) { }
 
   ngOnInit(): void {
@@ -36,6 +40,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     })
     this.findAll()
     this.findAllArticle()
+    console.log(this.selectedClientFournisseur)
+
   }
 
   findAll(){
@@ -79,14 +85,27 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
   
   ajouterLigneCommande(){
-    const ligneCmd: LigneCommandeClientDto={
-      article : this.searchedArticle,
-      prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-      quantite: +this.quantite
-    };
-    this.totalCommande = this.totalCommande + ligneCmd.prixUnitaire! * ligneCmd.quantite!
+    const ligneCmdAlreadyExists = this.lignesCommande.find(lig => lig.article?.codeArticle === this.searchedArticle.codeArticle)
+    if(ligneCmdAlreadyExists){
+      this.lignesCommande.forEach(lig=>{
+        if(lig.article?.codeArticle === this.searchedArticle.codeArticle){
+          // @ts-ignore
+          lig.quantite = +lig.quantite + +this.quantite
+          this.totalCommande = this.totalCommande + lig.prixUnitaire! * +this.quantite
+        }
+      })
+    
 
-    this.lignesCommande.push(ligneCmd)
+    }else{
+      const ligneCmd: LigneCommandeClientDto={
+        article : this.searchedArticle,
+        prixUnitaire: this.searchedArticle.prixUnitaireTtc,
+        quantite: +this.quantite
+      };
+      this.totalCommande = this.totalCommande + ligneCmd.prixUnitaire! * ligneCmd.quantite!
+      this.lignesCommande.push(ligneCmd)
+    }
+      
     this.searchedArticle = {}
     this.quantite = ''
     this.codeArticle = ''
@@ -100,6 +119,21 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     this.articleNotYetSelected=true;
   }
 
+  enregistrerCommande(){
+    const commandeClient : CommandeClientDto ={
+      client: this.selectedClientFournisseur,
+      code:'code',
+      etatCommmande : "EN_PREPARATION",
+      idEntreprise : 12
+    }
+    console.log(this.selectedClientFournisseur)
 
+    this.commandeClientService.saveUsingPOST3(commandeClient)
+    .subscribe(cmd=>{
+      this.router.navigate(['commandesclient'])
+    }, error =>{
+      this.errorMsg = error.error.errors
+    })
+  }
 
 }
