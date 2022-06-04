@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { CltfrsService } from 'src/app/services/cltfrs/cltfrs.service';
+import { CmdcltfrsService } from 'src/app/services/cmdcltfrs/cmdcltfrs.service';
 import { ArticleDto, ClientDto, CommandeClientDto, LigneCommandeClientDto } from 'src/gs-api/src/models';
 import { CommandeClientControllerService } from 'src/gs-api/src/services';
 
@@ -19,6 +20,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   articleErrorMsg= ''
   codeArticle=""
   quantite=""
+  codeCommande=""
   totalCommande=0
   listArticle: Array<ArticleDto> = []
   articleNotYetSelected = false
@@ -31,7 +33,7 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private router: Router,
     private cltFrsService : CltfrsService,
     private articleService : ArticleService,
-    private commandeClientService : CommandeClientControllerService
+    private commandeClientService : CmdcltfrsService
     ) { }
 
   ngOnInit(): void {
@@ -120,20 +122,30 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
   }
 
   enregistrerCommande(){
-    const commandeClient : CommandeClientDto ={
-      client: this.selectedClientFournisseur,
-      code:'code',
-      etatCommmande : "EN_PREPARATION",
-      idEntreprise : 12
+    const commande = this.preparerCommande()
+    if(this.origin == "client"){
+      this.commandeClientService.enregistrerCommandeClient(commande as CommandeClientDto)
+      .subscribe(cmd =>{
+        this.router.navigate(['commandeclient'])
+      }, error =>{
+        this.errorMsg = error.error.errors
+      })
     }
-    console.log(this.selectedClientFournisseur)
+    
+  }
 
-    this.commandeClientService.saveUsingPOST3(commandeClient)
-    .subscribe(cmd=>{
-      this.router.navigate(['commandesclient'])
-    }, error =>{
-      this.errorMsg = error.error.errors
-    })
+  private preparerCommande():any{
+    if(this.origin == "client"){
+      return {
+        client:this.selectedClientFournisseur,
+        code: this.codeCommande,
+        etatCommmande : "EN_PREPARATION",
+        ligneCommandeClients: this.lignesCommande
+      }
+
+    }else if(this.origin == "fournisseur"){
+
+    }
   }
 
 }
