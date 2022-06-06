@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ArticleService } from 'src/app/services/article/article.service';
 import { CltfrsService } from 'src/app/services/cltfrs/cltfrs.service';
 import { CmdcltfrsService } from 'src/app/services/cmdcltfrs/cmdcltfrs.service';
+import { UserService } from 'src/app/services/user/user.service';
 import { ArticleDto, ClientDto, CommandeClientDto, LigneCommandeClientDto } from 'src/gs-api/src/models';
 import { CommandeClientControllerService } from 'src/gs-api/src/services';
 
@@ -33,7 +34,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
     private router: Router,
     private cltFrsService : CltfrsService,
     private articleService : ArticleService,
-    private commandeClientService : CmdcltfrsService
+    private commandeClientService : CmdcltfrsService,
+    private userService : UserService
     ) { }
 
   ngOnInit(): void {
@@ -102,7 +104,8 @@ export class NouvelleCmdCltFrsComponent implements OnInit {
       const ligneCmd: LigneCommandeClientDto={
         article : this.searchedArticle,
         prixUnitaire: this.searchedArticle.prixUnitaireTtc,
-        quantite: +this.quantite
+        quantite: +this.quantite,
+        idEntreprise : this.userService.getConnectedUser().entreprise?.id
       };
       this.totalCommande = this.totalCommande + ligneCmd.prixUnitaire! * ligneCmd.quantite!
       this.lignesCommande.push(ligneCmd)

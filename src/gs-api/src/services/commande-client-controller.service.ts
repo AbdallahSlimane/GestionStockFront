@@ -7,6 +7,7 @@ import { StrictHttpResponse as __StrictHttpResponse } from '../strict-http-respo
 import { Observable as __Observable } from 'rxjs';
 import { map as __map, filter as __filter } from 'rxjs/operators';
 
+import { LigneCommandeClientDtoRes } from '../models/ligne-commande-client-dto-res';
 import { CommandeClientDtoRes } from '../models/commande-client-dto-res';
 import { CommandeClientDtoReq } from '../models/commande-client-dto-req';
 import { ResponseEntity } from '../models/response-entity';
@@ -18,6 +19,7 @@ import { ResponseEntity } from '../models/response-entity';
   providedIn: 'root',
 })
 class CommandeClientControllerService extends __BaseService {
+  static readonly findAllLignesCommandesClientByCommandeCliendIdUsingGETPath = '/gestiondesstock/v1/commandesclients/LigneCommande/{idCommande}';
   static readonly findAllUsingGET3Path = '/gestiondesstock/v1/commandesclients/all';
   static readonly updateClientUsingPATCHPath = '/gestiondesstock/v1/commandesclients/client/update/{idCommande}/{idClient}';
   static readonly saveUsingPOST3Path = '/gestiondesstock/v1/commandesclients/create';
@@ -32,6 +34,44 @@ class CommandeClientControllerService extends __BaseService {
     http: HttpClient
   ) {
     super(config, http);
+  }
+
+  /**
+   * findAllLignesCommandesClientByCommandeCliendId
+   * @param idCommande idCommande
+   * @return OK
+   */
+  findAllLignesCommandesClientByCommandeCliendIdUsingGETResponse(idCommande: number): __Observable<__StrictHttpResponse<Array<LigneCommandeClientDtoRes>>> {
+    let __params = this.newParams();
+    let __headers = new HttpHeaders();
+    let __body: any = null;
+
+    let req = new HttpRequest<any>(
+      'GET',
+      this.rootUrl + `/gestiondesstock/v1/commandesclients/LigneCommande/${encodeURIComponent(String(idCommande))}`,
+      __body,
+      {
+        headers: __headers,
+        params: __params,
+        responseType: 'json'
+      });
+
+    return this.http.request<any>(req).pipe(
+      __filter(_r => _r instanceof HttpResponse),
+      __map((_r) => {
+        return _r as __StrictHttpResponse<Array<LigneCommandeClientDtoRes>>;
+      })
+    );
+  }
+  /**
+   * findAllLignesCommandesClientByCommandeCliendId
+   * @param idCommande idCommande
+   * @return OK
+   */
+  findAllLignesCommandesClientByCommandeCliendIdUsingGET(idCommande: number): __Observable<Array<LigneCommandeClientDtoRes>> {
+    return this.findAllLignesCommandesClientByCommandeCliendIdUsingGETResponse(idCommande).pipe(
+      __map(_r => _r.body as Array<LigneCommandeClientDtoRes>)
+    );
   }
 
   /**

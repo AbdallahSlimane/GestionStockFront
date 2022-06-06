@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { CmdcltfrsService } from 'src/app/services/cmdcltfrs/cmdcltfrs.service';
 import { LigneCommandeClientDto } from 'src/gs-api/src/models';
 
 @Component({
@@ -9,11 +10,20 @@ import { LigneCommandeClientDto } from 'src/gs-api/src/models';
 export class DetailCmdComponent implements OnInit {
   
   @Input()
+  idCommande = -1;
+
+  @Input()
+  origin=''
+
+  @Input()
   ligneCommande : LigneCommandeClientDto = {};
   
-  constructor() { }
+  constructor(
+  ) { }
 
   ngOnInit(): void {
   }
+
+ 
 
 }
