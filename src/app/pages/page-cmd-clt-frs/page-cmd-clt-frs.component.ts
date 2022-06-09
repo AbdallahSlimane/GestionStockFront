@@ -13,6 +13,8 @@ export class PageCmdCltFrsComponent implements OnInit {
   origin="";
   listeCommandes: Array<CommandeClientDto> = []
   lignesCommande: Array<LigneCommandeClientDto> = []
+  mapLignesCommande = new Map()
+  mapPrixTotalCommande = new Map()
 
   constructor(
     private router:Router,
@@ -41,21 +43,43 @@ export class PageCmdCltFrsComponent implements OnInit {
       this.cmdCltFrsService.findAllCommandeClient()
       .subscribe(cmd=>{
         this.listeCommandes = cmd
+        this.findAllLigneCommande()
       })
     }else if (this.origin=='fournisseur'){
     }
   }
 
-  findAllLigneCommande(idCommande? : number){
+  findAllLigneCommande(){
+    this.listeCommandes.forEach(cmd=>{
+      this.findLigneCommande(cmd.id)
+    })
+  }
+
+  findLigneCommande(idCommande? : number){
     if(this.origin == 'client'){
         this.cmdCltFrsService.findAllLigneCommandeClient(idCommande)
         .subscribe(list =>{
-          this.lignesCommande = list
+          this.mapLignesCommande.set(idCommande , list)
+          this.mapPrixTotalCommande.set(idCommande , this.calculerTotalCmd(list))
         })
         console.log(this.lignesCommande.length)
       }else if (this.origin == 'fournisseur'){
   
       }
     }
+
+    calculerTotalCmd(list : Array<LigneCommandeClientDto>): number{
+      let total=0;
+      list.forEach(ligne=>{
+        if(ligne.quantite && ligne.prixUnitaire){
+          total = total + (ligne.quantite * ligne.prixUnitaire)
+        }
+      })
+      return total
+    }
+
+    calculerTotalCommande(id?:number): number{
+      return this.mapPrixTotalCommande.get(id)
+  }
 
 }
